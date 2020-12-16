@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { observer } from 'mobx-react'
 import './App.css';
+import Item from './components/Item';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  handleChange = (e) => {
+    this.setState({
+      newItem: e.target.value
+    })
+  }
+  addItem = () => {
+    this.props.store.addItem(this.state.newItem)
+  }
+  render() {
+    return (
+      <div className="App">
+        <input onChange={this.handleChange} />
+        <button onClick={this.addItem}>Add</button>
+        {/* your code here
+          You should map each grocery item into an Item component
+      */}
+      </div>
+    );
+  }
 }
 
-export default App;
+export default observer(App);
