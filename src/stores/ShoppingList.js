@@ -6,7 +6,7 @@ import { Item } from './Item'
 export class ShoppingList {
     constructor() {
         this.list = []
-        this.length
+        this.length = 0
         // your code here
 
     }

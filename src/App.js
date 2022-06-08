@@ -6,6 +6,7 @@ import Item from './components/Item';
 
 class App extends Component {
   constructor() {
+    super()
     this.state = {
       newItem: ''
     }
