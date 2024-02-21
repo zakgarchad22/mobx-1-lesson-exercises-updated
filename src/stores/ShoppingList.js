@@ -8,19 +8,36 @@ export class ShoppingList {
         this.list = []
         this.length = 0
         // your code here
-
+        makeObservable(this, {
+            list: observable,
+            checkItem: action,
+            addItem: action,
+            editItem: action,
+            deleteItem: action,
+        })
+        
     }
-    checkItem = () => {
-        // your code here
+    checkItem = (name) => {
+        let item = this.list.find(i => i.name === name)
+        item.completed = !item.completed
+    } 
+    addItem = (name) => {
+        const newItem = new Item(name)
+        this.list.push(newItem)
     }
-    addItem = () => {
-        // your code here
+    editItem = (name, newLocation) => {
+        const item = this.list.find(i => i.name === name)
+        if (item) {
+            item.location = newLocation
+        }
     }
-    editItem = () => {
-        // your code here
+    
+    deleteItem = (name) => {
+        const index = this.list.findIndex(i => i.name === name)
+        if (index > -1) {
+            this.list.splice(index, 1)
+        }
     }
-    deleteItem = () => {
-        // your code here
-    }
+    
 }
 
