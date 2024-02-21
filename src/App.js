@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react'
 import './App.css';
 import Item from './components/Item';
+import 'materialize-css/dist/css/materialize.min.css';
+
 
 
 class App extends Component {
@@ -21,15 +23,22 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <input onChange = {this.handleChange}/>
-        <button onClick = {this.addItem}>Add</button>
-        {this.props.store.list.map((i,ind) => <Item item = {i} 
-          key = {ind}
-          store = {this.props.store}/>
-          )}
+      <div className="App container">
+        <h3 className="center-align">Reservations</h3>
+        <div className="input-field">
+          <input id="item_name" type="text" onChange={this.handleChange} value={this.state.newItem} />
+          <label htmlFor="item_name">New Item</label>
+        </div>
+        <button className="btn waves-effect waves-light" onClick={this.addItem}>Add
+          <i className="material-icons right">add</i>
+        </button>
+        <ul className="collection">
+          {this.props.store.list.map((i, ind) => (
+            <Item item={i} key={ind} store={this.props.store} />
+          ))}
+        </ul>
       </div>
-    );
+    )
   }
 }
 

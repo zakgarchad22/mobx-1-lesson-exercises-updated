@@ -19,19 +19,24 @@ class Item extends Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { item } = this.props
     return (
-      <div className={item.completed ? "crossed" : null}>
-        <input 
-          type="checkbox"
-          onClick={this.checkItem} 
-          value={item.name}
-        />
-        {item.name} - {item.location}
-        <button onClick={this.editItem}>Edit</button>
-        <button onClick={this.deleteItem}>Delete</button>
-      </div>
-    );
+      <li className={`collection-item avatar ${item.completed ? "crossed" : ""}`}>
+        <i className="material-icons circle">assignment</i>
+        <span className="title">{item.name}</span>
+        <p>{item.location}</p>
+        <div className="secondary-content">
+          <input type="checkbox" id={`check-${item.id}`} onClick={this.checkItem} checked={item.completed} />
+          <label htmlFor={`check-${item.id}`}></label>
+          <button className="btn-small waves-effect waves-light" onClick={this.editItem}>
+            <i className="material-icons">edit</i>
+          </button>
+          <button className="btn-small red waves-effect waves-light" onClick={this.deleteItem}>
+            <i className="material-icons">delete</i>
+          </button>
+        </div>
+      </li>
+    )
   }
 }
 
